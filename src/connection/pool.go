@@ -32,6 +32,5 @@ func (con *Connection) entry() {
 		return
 	}
 	conn.Close()
-	go HeartBeat()
 
 }
