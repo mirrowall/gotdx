@@ -1,28 +1,30 @@
-package parser
+package trans
 
-// BaseParser : base parser
-// the parser interface
-type BaseParser interface {
+// Entry 一个接口类型，实现实体的参数组织及返回解析
+type Entry interface {
 	MakeSendParams() []byte
 	ParseRespond(params []byte)
 }
 
-// BaseParam a
-type BaseParam struct {
+// BaseEntry the base transact
+type BaseEntry struct {
+	id       int64
+	status   int
+	trycount int
 }
 
 // GetParam1 获取第一个参数
-func (parser *BaseParam) GetParam1() []byte {
+func GetParam1() []byte {
 	return []byte{0x0C, 0x02, 0x18, 0x93, 0x00, 0x01, 0x03, 0x00, 0x03, 0x00, 0x0D, 0x00, 0x01}
 }
 
 // GetParam2 获取第二个参数
-func (parser *BaseParam) GetParam2() []byte {
+func GetParam2() []byte {
 	return []byte{0x0C, 0x02, 0x18, 0x94, 0x00, 0x01, 0x03, 0x00, 0x03, 0x00, 0x0D, 0x00, 0x02}
 }
 
 // GetParam3 获取第三个参数
-func (parser *BaseParam) GetParam3() []byte {
+func GetParam3() []byte {
 	return []byte{
 		0x0C, 0x03, 0x18, 0x99, 0x00, 0x01, 0x20, 0x00,
 		0x20, 0x00, 0xDB, 0x0F, 0xD5, 0xD0, 0xC9, 0xCC,
@@ -31,4 +33,10 @@ func (parser *BaseParam) GetParam3() []byte {
 		0xC9, 0xCC, 0xBD, 0xF0, 0xD7, 0xEA, 0x00, 0x00,
 		0x00, 0x02,
 	}
+}
+
+// GetDatas init the transact
+func (base *BaseEntry) GetDatas() int {
+
+	return 0
 }
